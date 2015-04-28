@@ -79,7 +79,7 @@ class RegistrationFOSUser1Controller extends ContainerAware
 
         $this->container->get('session')->set('sonata_user_redirect_url', $this->container->get('request')->headers->get('referer'));
 
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -97,7 +97,7 @@ class RegistrationFOSUser1Controller extends ContainerAware
             throw new NotFoundHttpException(sprintf('The user with email "%s" does not exist', $email));
         }
 
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:checkEmail.html.'.$this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:checkEmail.html.twig', array(
             'user' => $user,
         ));
     }
@@ -139,7 +139,7 @@ class RegistrationFOSUser1Controller extends ContainerAware
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:confirmed.html.'.$this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:confirmed.html.twig', array(
             'user' => $user,
         ));
     }
@@ -170,10 +170,5 @@ class RegistrationFOSUser1Controller extends ContainerAware
     protected function setFlash($action, $value)
     {
         $this->container->get('session')->getFlashBag()->set($action, $value);
-    }
-
-    protected function getEngine()
-    {
-        return $this->container->getParameter('fos_user.template.engine');
     }
 }

@@ -45,7 +45,7 @@ class ChangePasswordFOSUser1Controller extends ContainerAware
         }
 
         return $this->container->get('templating')->renderResponse(
-            'SonataUserBundle:ChangePassword:changePassword.html.'.$this->container->getParameter('fos_user.template.engine'),
+            'SonataUserBundle:ChangePassword:changePassword.html.twig',
             array('form' => $form->createView())
         );
     }
